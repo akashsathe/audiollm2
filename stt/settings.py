@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-61jd&d&m*4^bif8rlt**p+n8-(ttvzadzbhd3urtjxaq%c9ebj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['.onrender.com']
 
 
 # Application definition
@@ -87,9 +88,10 @@ WSGI_APPLICATION = 'stt.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL")
-    )
+    # 'default': dj_database_url.config(
+    #     default=os.environ.get("DATABASE_URL")
+    # )
+        'default': dj_database_url.config(default='sqlite:///db.sqlite3')
 }
 
 
@@ -131,6 +133,8 @@ USE_TZ = True
 # Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
